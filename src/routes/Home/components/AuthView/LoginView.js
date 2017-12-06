@@ -57,11 +57,16 @@ class LoginView extends React.Component {
                         <div className="form-group">
                             <input type="password" className="form-control" placeholder="Şifre" value={this.state.password} onChange={this.passwordChanged.bind(this)} />
                         </div>
+                        <div className="form-group">
                         <button type="button" className="btn btn-primary" onClick={this.onUserClick.bind(this)}>Giriş Yap</button>
+                     
+                          </div>
+                          <div className="form-group">
                         <a href="#" onClick={e => {
                             e.preventDefault();
                             onViewChange(3);
                         }}>Şifremi Unuttum!</a>
+                        </div>
                     </form>
 
                     <p>
