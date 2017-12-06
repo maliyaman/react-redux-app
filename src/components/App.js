@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-import React from 'react';
-import './app.sass';
-
-const App = () => <div>Hello World1232</div>;
-export default App;
-=======
 import React from 'react'
 import { browserHistory, Router } from 'react-router'
 import { Provider } from 'react-redux'
@@ -32,4 +25,4 @@ class App extends React.Component {
 }
 
 export default App
->>>>>>> Login Ekranı Yazıldı.
+

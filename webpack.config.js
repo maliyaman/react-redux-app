@@ -1,35 +1,6 @@
 /* eslint-disable */
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-<<<<<<< HEAD
 
-const htmlWebPackConfig = new HtmlWebpackPlugin({
-  template: 'src/index.html',
-  filename: 'index.html',
-  inject: 'body'
-});
-
-module.exports = {
-  entry: './src/main.js',
-  output: {
-    path: '/',
-    filename: 'bundle.js',
-  },
-  module: {
-    loaders: [{
-      test: /\.js$/,
-      exclude: /node_modules/,
-      loader: 'babel-loader',
-    },
-    {
-      test: /\.sass$/,
-      loaders: ['style-loader', 'css-loader', 'sass-loader'],
-    }],
-
-  },
-  plugins: [htmlWebPackConfig],
-};
-
-=======
 const path = require('path')
 const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
@@ -263,4 +234,4 @@ if (__PROD__) {
 }
 
 module.exports = config
->>>>>>> Login Ekranı Yazıldı.
+

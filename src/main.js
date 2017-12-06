@@ -1,14 +1,4 @@
-<<<<<<< HEAD
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './components/App';
 
-
-const render = () => {
-  ReactDOM.render(<App />, document.getElementById('root'));
-};
-render();
-=======
 import React from 'react'
 import ReactDOM from 'react-dom'
 import createStore from './store/createStore'
@@ -62,4 +52,3 @@ if (__DEV__) {
 // Let's Go!
 // ------------------------------------
 if (!__TEST__) render()
->>>>>>> Login Ekranı Yazıldı.
