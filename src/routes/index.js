@@ -1,6 +1,7 @@
 // We only need to import the modules necessary for initial render
 import CoreLayout from '../layouts/PageLayout'
 import Home from './Home'
+import Profile from './ProfileView'
 
 /*  Note: Instead of using JSX, we recommend using react-router
     PlainRoute objects to build route definitions.   */
@@ -10,10 +11,24 @@ export const createRoutes = (store) => ({
   component   : CoreLayout,
   indexRoute  : Home,
   childRoutes : [
-    Home
+    {
+      path        : '/profile',
+      component   : CoreLayout,
+      indexRoute  : Profile,
+      onEnter :requireAuth(store)
+    }
+
   ]
 })
+const requireAuth= (store) => (nextState, replace) => {
+  const state = store.getState();
+  console.log(state.user.name===undefined);
+  if(state.user.name===undefined) {
+    replace('/');
+  }
+};
 
+  
 /*  Note: childRoutes can be chunked or otherwise loaded programmatically
     using getChildRoutes with the following signature:
     getChildRoutes (location, cb) {

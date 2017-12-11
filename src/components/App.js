@@ -8,7 +8,7 @@ class App extends React.Component {
     store: PropTypes.object.isRequired,
     routes: PropTypes.object.isRequired,
   }
-
+ 
   shouldComponentUpdate () {
     return false
   }
@@ -22,6 +22,7 @@ class App extends React.Component {
       </Provider>
     )
   }
+
 }
 
 export default App
