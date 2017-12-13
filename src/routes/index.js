@@ -2,6 +2,7 @@
 import CoreLayout from '../layouts/PageLayout'
 import Home from './Home'
 import Profile from './ProfileView'
+import {profileInitData}  from '../store/profileReducer'
 
 /*  Note: Instead of using JSX, we recommend using react-router
     PlainRoute objects to build route definitions.   */
@@ -15,7 +16,8 @@ export const createRoutes = (store) => ({
       path        : '/profile',
       component   : CoreLayout,
       indexRoute  : Profile,
-      onEnter :requireAuth(store)
+      onEnter :requireAuth(store),
+      store:store
     }
 
   ]

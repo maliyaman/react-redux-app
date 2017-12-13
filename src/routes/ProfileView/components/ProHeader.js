@@ -1,36 +1,77 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 
 import { profileInit } from 'store/profileReducer'
+import PropTypes from 'prop-types';
+import Modal from 'react-modal';
 
+   
 
 class ProHeader extends Component {
-    componentWillMount(){
-        this.state ={
-            name: "Melih",
-            surname:"Korkmaz",
-            email: "mk@count.ly",
-            age: 33,
-            gender: "male"
-        }
-    }
+
     constructor() {
         super();
         this.state = {
             name: "",
-            surname:"",
+            surname: "",
             email: "",
+            phone: "",
             age: 0,
-            gender: ""
+            gender: "",
+            modalIsOpen: false
         }
+        this.openModal = this.openModal.bind(this);
+        this.afterOpenModal = this.afterOpenModal.bind(this);
+        this.closeModal = this.closeModal.bind(this);
     }
-    
+    componentWillMount() {
+        const store = this.context.store;
+        const user = {
+            name: "Melih",
+            surname: "Korkmaz",
+            email: "mk@count.ly",
+            phone: "+90507 515 20 60",
+            age: 33,
+            gender: "male"
+        };
+        this.props.profileHeaderUserData(user);
+        this.setState(store.getState().profile);
+
+    }
+    openModal() {
+        this.setState({modalIsOpen: true});
+      }
+      closeModal() {
+        this.setState({modalIsOpen: false});
+      }
+      afterOpenModal() {
+        // references are now sync'd and can be accessed.
+     
+      }
     render() {
-        const { name, surname } = this.state;
-        console.log(this.state)
+        const { name, surname, email, phone } = this.state;
         return (
-           
             <div className="container">
+                <Modal
+                    isOpen={this.state.modalIsOpen}
+                    onAfterOpen={this.afterOpenModal}
+                    onRequestClose={this.closeModal}
+                    closeTimeoutMS={5}
+                    style={{
+                        content : {
+                          top                   : '50%',
+                          left                  : '50%',
+                          right                 : 'auto',
+                          bottom                : 'auto',
+                          marginRight           : '-50%',
+                          transform             : 'translate(-50%, -50%)'
+                        }
+                      }}
+                    contentLabel="Modal"
+                >
+                    <h1>Modal Content</h1>
+                    <p>Etc.</p>
+                </Modal>
                 <div className="jumbotron">
                     <div className="row">
                         <div className="col-md-4 col-xs-12 col-sm-6 col-lg-4">
@@ -38,12 +79,13 @@ class ProHeader extends Component {
                         </div>
                         <div className="col-md-8 col-xs-12 col-sm-6 col-lg-8">
                             <div className="container headerContainer">
-                                <h2>{name+ ' ' + surname}</h2>
+                                <h2>{name + ' ' + surname}</h2>
+                                <button onClick={this.openModal}>Open Modal</button>
                             </div>
                             <hr />
                             <ul className="container details">
-                                <li><p><span className="glyphicon glyphicon-earphone one headerElement"></span>+91 90000 00000</p></li>
-                                <li><p><span className="glyphicon glyphicon-envelope one headerElement" ></span>somerandom@email.com</p></li>
+                                <li><p><span className="glyphicon glyphicon-earphone one headerElement"></span>{phone}</p></li>
+                                <li><p><span className="glyphicon glyphicon-envelope one headerElement" ></span>{email}</p></li>
                                 <li><p><span className="glyphicon glyphicon-map-marker one headerElement"></span>Hyderabad</p></li>
                                 <li><p><span className="glyphicon glyphicon-new-window one headerElement" ></span><a href="#">www.example.com</a></p></li>
                             </ul>
@@ -54,6 +96,9 @@ class ProHeader extends Component {
 
         );
     }
+}
+ProHeader.contextTypes = {
+    store: PropTypes.object.isRequired
 }
 const mapStateToProps = (state) => {
     return {
