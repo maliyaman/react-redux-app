@@ -4,8 +4,8 @@ import { connect } from 'react-redux'
 import { profileInit } from 'store/profileReducer'
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
+import ProHeaderPopUp from './ProHeaderPopUp'
 
-   
 
 class ProHeader extends Component {
 
@@ -36,42 +36,24 @@ class ProHeader extends Component {
         };
         this.props.profileHeaderUserData(user);
         this.setState(store.getState().profile);
+        Modal.setAppElement('body');
 
     }
     openModal() {
-        this.setState({modalIsOpen: true});
-      }
-      closeModal() {
-        this.setState({modalIsOpen: false});
-      }
-      afterOpenModal() {
+        this.setState({ modalIsOpen: true });
+    }
+    closeModal() {
+        this.setState({ modalIsOpen: false });
+    }
+    afterOpenModal() {
         // references are now sync'd and can be accessed.
-     
-      }
+
+    }
     render() {
         const { name, surname, email, phone } = this.state;
         return (
             <div className="container">
-                <Modal
-                    isOpen={this.state.modalIsOpen}
-                    onAfterOpen={this.afterOpenModal}
-                    onRequestClose={this.closeModal}
-                    closeTimeoutMS={5}
-                    style={{
-                        content : {
-                          top                   : '50%',
-                          left                  : '50%',
-                          right                 : 'auto',
-                          bottom                : 'auto',
-                          marginRight           : '-50%',
-                          transform             : 'translate(-50%, -50%)'
-                        }
-                      }}
-                    contentLabel="Modal"
-                >
-                    <h1>Modal Content</h1>
-                    <p>Etc.</p>
-                </Modal>
+                     <ProHeaderPopUp isOpen={this.state.modalIsOpen}/>
                 <div className="jumbotron">
                     <div className="row">
                         <div className="col-md-4 col-xs-12 col-sm-6 col-lg-4">
